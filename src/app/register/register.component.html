@@ -1,0 +1,124 @@
+<div class="row mb-5" style="margin-top: 90px">
+  <div class="col-lg-1 col-sm-12"></div>
+  <div class="col-lg-10 col-sm-12">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 p-0">
+        <div class="left shadow">
+          <img
+            style="height: 489px"
+            width="100%"
+            src="https://media0.giphy.com/media/g2RNvrGx6bffjE6hgt/200w.webp?cid=ecf05e47dbolnbm9h9neeuv9snsi2zmwbgnwnrrqdujcw8fg&ep=v1_gifs_related&rid=200w.webp&ct=g"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12 p-0">
+        <div class="right shadow">
+          <div class="login_form pb-4">
+            <div
+              class="top text-center mt-2"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+              "
+            >
+              <div
+                class="border border-dark border-2"
+                style="border-radius: 50%; padding: 10px 15px"
+              >
+                <i class="fa-solid fa-user fa-2x text-dark"></i>
+              </div>
+              <h2 class="text-dark fw-bolder">Join Family</h2>
+            </div>
+            <div class="mid shadow w-40 p-4 m-3">
+              <form
+                action=""
+                [formGroup]="registerForm"
+                (ngSubmit)="register()"
+              >
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  placeholder="Enter Username"
+                  formControlName="username"
+                  autocomplete="off"
+                  name="uname"
+                />
+                <span
+                  *ngIf="
+                    registerForm.get('username')?.errors &&
+                    registerForm.get('username')?.touched
+                  "
+                  class="text-warning mb-3"
+                  >Invalid input</span
+                >
+                <input
+                  type="email"
+                  class="form-control mb-3"
+                  placeholder="Enter Email"
+                  autocomplete="off"
+                  formControlName="email"
+                  name="uemail"
+                />
+                <span
+                  *ngIf="
+                    registerForm.get('email')?.errors &&
+                    registerForm.get('email')?.touched
+                  "
+                  class="text-warning"
+                  >Invalid input</span
+                >
+
+                <input
+                  type="password"
+                  class="form-control mb-3"
+                  placeholder="Enter Password"
+                  formControlName="password"
+                  autocomplete="off"
+                  name="upass"
+                />
+                <span
+                  *ngIf="
+                    registerForm.get('password')?.errors &&
+                    registerForm.get('password')?.touched
+                  "
+                  class="text-warning"
+                  >Invalid input</span
+                >
+
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                >
+                  <button type="submit" class="btn btn-dark w-100">
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div
+              class="bottom mt-5"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <p>
+                Already have an Account
+                <span class="fw-bolder" routerLink="/login">Login</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-1 col-sm-12"></div>
+</div>

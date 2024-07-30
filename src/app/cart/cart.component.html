@@ -1,0 +1,105 @@
+<div *ngIf="allProduct.length > 0" class="row mt-3">
+  <h3 class="text-center text-danger mb-5">Cart</h3>
+  <div class="col-md-1 mt-5"></div>
+  <div class="col-md-6" style="overflow-x: auto">
+    <table class="table table-bordered shadow">
+      <thead>
+        <tr>
+          <th class="bg-secondary text-light">#</th>
+          <th class="bg-secondary text-light">Title</th>
+          <th class="bg-secondary text-light">Image</th>
+          <th class="bg-secondary text-light">Quantity</th>
+          <th class="bg-secondary text-light">Price</th>
+          <th class="bg-secondary text-light">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of allProduct; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ product.title }}</td>
+          <td>
+            <div class="d-flex justify-content-center">
+              <img
+                width="130px"
+                height="130px"
+                [src]="product.image"
+                alt="no image"
+              />
+            </div>
+          </td>
+          <td class="d-flex justify-content-center">
+            <div class="d-flex">
+              <button class="btn fs-2" (click)="decrementItem(product._id)">
+                -
+              </button>
+              <input
+                type="text"
+                class="form-control"
+                style="max-width: 3rem"
+                value="{{ product.quantity }}"
+                readonly
+              />
+              <button class="btn fs-2" (click)="incrementItem(product._id)">
+                +
+              </button>
+            </div>
+          </td>
+          <td>$ {{ product.grandTotal }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="removeItem(product._id)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="my-3 d-flex justify-content-center gap-4">
+      <button class="btn btn-outline-danger" (click)="emptyCart()">
+        Empty Cart
+      </button>
+      <button routerLink="/" class="btn btn-outline-success">
+        Add More Item
+      </button>
+    </div>
+  </div>
+  <div class="col-md-4 mt-5 mt-md-0">
+    <div class="border shadow p-3 w-75 rounded">
+      <h3 class="text-success">Cart Summary</h3>
+      <h5>Total Number of Items: {{ allProduct.length }}</h5>
+      <h5>Grand Total : ${{ total }}</h5>
+      <button class="btn btn-success w-100 mt-3" (click)="checkOut()">
+        Checkout
+      </button>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+<div
+  *ngIf="allProduct.length === 0"
+  style="
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  "
+>
+  <div class="col-md-4"></div>
+  <div
+    class="col-md-4 d-flex justify-content-center align-items-center flex-column"
+  >
+    <img
+      height="350px"
+      width="350px"
+      src="https://media2.giphy.com/media/giXLnhxp60zEEIkq8K/giphy.gif?cid=6c09b952ihyc7m0cej8zfflmsa0ffugj7xirp8ddn7g2ue9a&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"
+      alt=""
+    />
+    <button class="btn btn-success mt-2" routerLink="/">
+      <i class="fa-solid fa-backward me-2"></i>Back Home
+    </button>
+  </div>
+  <div class="col-md-4"></div>
+</div>

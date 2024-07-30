@@ -1,0 +1,79 @@
+<div class="row w-100 mb-3" style="margin-top: 100px">
+  <div class="col-md-6">
+    <img
+      src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3Rra2FiMjZkamVkcHFjdzU3dGdqb2g5eTl5bjU4MnN1dHNxZGNxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TIeTxUeyPeFI771jTF/giphy.webp"
+      alt=""
+      class="w-70"
+    />
+  </div>
+
+  <div class="col-md-6 d-flex justify-content-center align-items-center">
+    <form
+      class="border p-3 rounded shadow w-75"
+      *ngIf="!paymentStatus"
+      [formGroup]="checkOutForm"
+      style="background-image: linear-gradient(to right, gray, white)"
+    >
+      <h3 class="text-center">Delivery Address</h3>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="uname"
+          placeholder="Name"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="flat"
+          placeholder="Apartment Number"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="place"
+          placeholder="Place"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="pincode"
+          placeholder="Pincode"
+        />
+      </div>
+      <div class="mb d-flex justify-content-between">
+        <button class="btn btn-warning" (click)="cancel()">Cancel</button>
+        <button class="btn btn-success" (click)="confirmAddress()">
+          Confirm Address
+        </button>
+      </div>
+    </form>
+
+    <div
+      *ngIf="paymentStatus"
+      class="border p-md-5 p-3 mt-5 mt-md-0 rounded w-75"
+    >
+      <h3 class="text-danger mb-5">Confirm Delivery Address</h3>
+      <h5>Name: {{ checkOutForm.value.uname }}</h5>
+      <h5>Apartment Number: {{ checkOutForm.value.flat }}</h5>
+      <h5>Place of Delivery: {{ checkOutForm.value.place }}</h5>
+      <h5>Pincode: {{ checkOutForm.value.pincode }}</h5>
+      <h5>grandTotal: ${{ grandTotal }}</h5>
+      <div class="mb d-flex justify-content-between">
+        <button class="btn btn-warning" (click)="back()">Back</button>
+        <button class="btn btn-success" (click)="payment()">
+          Make Payment
+        </button>
+      </div>
+      <div *ngIf="payStatus" class="mt-4">
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<section class="py-5">
+  <h2 class="text-center text-secondary fs-1 fw-bold mt-5">Wishlist</h2>
+  <div class="container px-4 px-lg-5 mt-5">
+    <div
+      class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+    >
+      <div class="col mb-5" *ngFor="let products of allWishListProduct">
+        <div class="card h-100 shadow">
+          <!-- Product image-->
+          <img
+            class="card-img-top"
+            [src]="products.image"
+            alt="no image"
+            height="250px"
+          />
+          <!-- Product details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw-bolder">{{ products.title.slice(0, 25) }}</h5>
+              <!-- Product price-->
+              $ {{ products.price }}
+            </div>
+          </div>
+          <!-- Product actions-->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="d-flex justify-content-between">
+              <a
+                class="btn btn-outline-dark mt-auto"
+                (click)="removeItem(products._id)"
+                ><i class="fa-solid fa-trash-can" style="color: #ec1818"></i
+              ></a>
+              <a
+                class="btn btn-outline-dark mt-auto"
+                (click)="addToCart(products)"
+                ><i class="fa-solid fa-cart-plus"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div
+  *ngIf="allWishListProduct.length == 0"
+  style="
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  "
+>
+  <img
+    src="https://www.taazashahimewa.com/assets/front/images/wishlist-empty1.jpg"
+    alt=""
+  />
+  <button class="btn btn-success" routerLink="/">
+    <i class="fa-solid fa-backward me-2"></i>Back Home
+  </button>
+</div>

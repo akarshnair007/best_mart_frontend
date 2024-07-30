@@ -1,0 +1,77 @@
+<nav
+  class="navbar navbar-expand-lg bg-dark p-3 w-100"
+  style="position: fixed; top: 0px; z-index: 2"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" routerLink="/"
+      ><i class="fa-brands fa-slack fa-spin me-3"></i>Bestmart</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex w-50 ms-5" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          #key
+          placeholder="Search by category"
+          aria-label="Search"
+        />
+        <button
+          class="btn btn-outline-success"
+          (click)="getSearch(key.value)"
+          type="button"
+        >
+          Search
+        </button>
+      </form>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            routerLink="/wishlist"
+            class="btn btn-outline-light me-4 wishlist-cart-btn"
+          >
+            <i class="fa-solid fa-heart me-2"></i>Wishlist
+            <span class="badge text-bg-secondary ms-2">{{ wishCount }}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="btn btn-outline-light me-4 wishlist-cart-btn"
+            routerLink="/cart"
+          >
+            <i class="fa-solid fa-cart-shopping me-2"></i>Cart
+            <span class="badge text-bg-secondary ms-2">{{ cartCount }}</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!username">
+          <a
+            class="btn btn-outline-light me-4 wishlist-cart-btn"
+            routerLink="/login"
+          >
+            <i class="fa-solid fa-user me-2"></i>Login
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="username">
+          <button
+            (click)="logout()"
+            class="btn btn-outline-light me-4 wishlist-cart-btn"
+            routerLink="/login"
+          >
+            <i class="fa-solid fa-power-off me-2"></i>{{ username }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
